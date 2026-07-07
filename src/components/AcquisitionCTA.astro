@@ -1,0 +1,33 @@
+---
+import { ACQUISITION_MAILTO, SITE } from '../config/site';
+---
+
+<section class="bg-slate-900 py-16" id="acquire">
+  <div class="max-w-3xl mx-auto px-6 text-center">
+    <div class="inline px-4 py-1 rounded-3xl bg-white/10 text-white text-xs tracking-[1.5px] font-medium mb-4">
+      SERIOUS INQUIRIES ONLY
+    </div>
+    <h2 class="text-white text-4xl md:text-5xl tracking-tighter font-semibold font-display">
+      Ready to own SDL.Space?
+    </h2>
+    <p class="mt-4 text-white/70 max-w-md mx-auto">
+      Premium, versatile domains that perfectly describe high-demand commercial categories like storage,
+      events, and land are extremely rare. Contact us for confidential acquisition discussion.
+    </p>
+
+    <a
+      href={ACQUISITION_MAILTO}
+      class="mt-10 inline-flex items-center justify-center gap-x-3 px-12 py-5 bg-white text-slate-900 hover:bg-amber-50 font-semibold rounded-3xl text-lg transition-all active:scale-[0.985] shadow-xl"
+    >
+      <span>Inquire About Acquisition</span>
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+      </svg>
+    </a>
+
+    <p class="mt-6 text-sm text-white/50">
+      Email <a href={`mailto:${SITE.email}`} class="text-white/80 hover:text-white underline">{SITE.email}</a>
+      — we typically respond within 24–48 hours. All inquiries are confidential.
+    </p>
+  </div>
+</section>

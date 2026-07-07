@@ -1,0 +1,63 @@
+---
+import { ACQUISITION_MAILTO, OG_IMAGE } from '../config/site';
+---
+
+<header class="relative min-h-[620px] md:min-h-[680px] flex items-center overflow-hidden bg-slate-950">
+  <div class="absolute inset-0">
+    <img
+      src={OG_IMAGE}
+      alt="Scottsdale desert landscape — premium space for storage, events, and land"
+      class="w-full h-full object-cover"
+      width="1920"
+      height="1080"
+      fetchpriority="high"
+      loading="eager"
+    />
+    <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/90 to-slate-950/70"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-950/30"></div>
+  </div>
+
+  <div class="relative max-w-5xl mx-auto px-6 pt-8 md:pt-0">
+    <div class="max-w-3xl">
+      <div
+        class="inline-flex items-center gap-x-2 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-1.5 rounded-3xl mb-8"
+      >
+        <div class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></div>
+        <span class="text-xs font-semibold tracking-[1.5px] text-white/90"
+          >PREMIUM .SPACE DOMAIN • SCOTTSDALE, AZ</span
+        >
+      </div>
+
+      <h1 class="text-white">
+        <span class="block text-7xl md:text-[5.75rem] font-bold tracking-tighter domain-name font-display"
+          >sdl.space</span
+        >
+      </h1>
+
+      <p class="mt-4 max-w-xl text-2xl text-white/90 tracking-tight">
+        The premier domain for storage, event spaces,<br />and open land acquisition in Scottsdale, Arizona.
+      </p>
+
+      <div class="mt-9 flex flex-wrap gap-4">
+        <a
+          href={ACQUISITION_MAILTO}
+          class="px-10 py-4 bg-white text-slate-900 hover:bg-amber-50 font-semibold rounded-3xl text-base transition-all active:scale-[0.985] shadow-xl"
+        >
+          Inquire to Purchase
+        </a>
+        <a
+          href="#market"
+          class="px-8 py-4 border border-white/30 hover:bg-white/10 text-white font-semibold rounded-3xl text-base transition-all"
+        >
+          Explore the Scottsdale Space Market
+        </a>
+      </div>
+
+      <div class="mt-8 flex items-center gap-x-6 text-xs text-white/60">
+        <div>Short • Versatile • Market-Owning</div>
+        <div class="w-px h-3 bg-white/30"></div>
+        <div>Storage • Events • Land Acquisition</div>
+      </div>
+    </div>
+  </div>
+</header>
