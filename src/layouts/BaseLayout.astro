@@ -30,6 +30,7 @@ const structuredData = {
       name: SITE.name,
       description,
       inLanguage: 'en-US',
+      publisher: { '@id': `${SITE.url}#organization` },
     },
     {
       '@type': 'WebPage',
@@ -38,33 +39,14 @@ const structuredData = {
       name: title,
       description,
       isPartOf: { '@id': `${SITE.url}#website` },
+      about: { '@id': `${SITE.url}#organization` },
+      primaryImageOfPage: {
+        '@type': 'ImageObject',
+        url: OG_IMAGE,
+      },
       datePublished: publishedDate,
-      dateModified: publishedDate,
+      dateModified: '2026-07-10',
       inLanguage: 'en-US',
-    },
-    {
-      '@type': 'Product',
-      '@id': `${SITE.url}#product`,
-      name: 'sdl.space Premium Domain Name',
-      description:
-        'The premier .space domain for storage facilities, event venues, and open land acquisition in Scottsdale, Arizona. Available for acquisition.',
-      url: SITE.url,
-      image: OG_IMAGE,
-      category: 'Premium Domain Name',
-      brand: {
-        '@type': 'Brand',
-        name: 'sdl.space',
-      },
-      offers: {
-        '@type': 'Offer',
-        url: ACQUISITION_MAILTO,
-        availability: 'https://schema.org/InStock',
-        seller: {
-          '@type': 'Organization',
-          name: SITE.name,
-          email: SITE.email,
-        },
-      },
     },
     {
       '@type': 'Organization',
@@ -72,6 +54,13 @@ const structuredData = {
       name: 'SDL Domains',
       url: SITE.url,
       email: SITE.email,
+      logo: OG_IMAGE,
+      contactPoint: {
+        '@type': 'ContactPoint',
+        email: SITE.email,
+        contactType: 'sales',
+        url: ACQUISITION_MAILTO,
+      },
       address: {
         '@type': 'PostalAddress',
         addressLocality: 'Scottsdale',
