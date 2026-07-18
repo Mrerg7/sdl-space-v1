@@ -16,8 +16,7 @@ const {
   noindex = false,
 } = Astro.props;
 
-const pathname = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
-const canonicalURL = new URL(pathname, SITE.url);
+const canonicalURL = SITE.url;
 const publishedDate = '2026-07-07';
 
 const structuredData = {
