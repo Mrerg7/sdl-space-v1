@@ -10,5 +10,13 @@ html_handling = "force-trailing-slash"
 not_found_handling = "404-page"
 binding = "ASSETS"
 
+[[routes]]
+pattern = "sdl.space"
+custom_domain = true
+
+[[routes]]
+pattern = "www.sdl.space"
+custom_domain = true
+
 [observability]
 enabled = true

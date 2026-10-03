@@ -1,0 +1,89 @@
+---
+import { SITE, DOMAIN_OFFER } from '../config/site';
+/* Exit-intent email capture: zero-backend, works on Cloudflare free plan.
+   Desktop: triggers once on mouse-leave-to-top. Mobile: never triggers (no mouse).
+   CTA deep-links to email with a prefilled offer so no server is required. */
+const offerMailto =
+  `mailto:${SITE.email}?subject=${encodeURIComponent('sdl.space — Please send escrow & transfer details')}` +
+  `&body=${encodeURIComponent('Hello,\n\nPlease send the escrow and transfer details for sdl.space.\n\nName:\nOffer (optional):\nIntended use:\n\nThank you.')}`;
+---
+
+<div
+  id="exit-intent"
+  class="hidden fixed inset-0 z-[60] items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="exit-intent-title"
+>
+  <div class="relative w-full max-w-md bg-white rounded-3xl p-8 text-center shadow-2xl">
+    <button
+      id="exit-intent-close"
+      type="button"
+      class="absolute top-3 right-3 inline-flex items-center justify-center w-12 h-12 rounded-2xl text-slate-400 hover:text-slate-700 hover:bg-slate-100"
+      aria-label="Dismiss offer"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+    <p class="text-xs font-bold tracking-[2px] text-amber-700">BEFORE YOU GO</p>
+    <h2 id="exit-intent-title" class="mt-2 text-2xl font-bold tracking-tight text-slate-900 font-display">
+      Get the escrow & transfer checklist
+    </h2>
+    <p class="mt-3 text-sm text-slate-600">
+      {SITE.name} is a 1-of-1 asset at <strong>{DOMAIN_OFFER.priceDisplay}</strong>. Email us and we'll reply
+      within 24–48 hours with pricing, escrow steps, and transfer timeline — no obligation.
+    </p>
+    <a
+      href={offerMailto}
+      data-cta="exit-intent-email"
+      class="mt-6 inline-flex w-full items-center justify-center px-6 py-4 bg-slate-900 hover:bg-black text-white font-semibold rounded-2xl transition-all"
+    >
+      Email me the details
+    </a>
+    <p class="mt-3 text-[11px] text-slate-400">Confidential • No spam, ever • One email thread</p>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var popup = document.getElementById('exit-intent');
+    var closeBtn = document.getElementById('exit-intent-close');
+    if (!popup) return;
+
+    var shown = false;
+    try {
+      shown = window.sessionStorage.getItem('sdl-exit-shown') === '1';
+    } catch (e) { /* private mode: show at most once per pageview */ }
+
+    function open() {
+      if (shown || !popup) return;
+      shown = true;
+      try { window.sessionStorage.setItem('sdl-exit-shown', '1'); } catch (e) {}
+      popup.classList.remove('hidden');
+      popup.classList.add('flex');
+      var cta = popup.querySelector('a');
+      if (cta) cta.focus();
+    }
+
+    function close() {
+      if (!popup) return;
+      popup.classList.add('hidden');
+      popup.classList.remove('flex');
+    }
+
+    // Desktop exit-intent: cursor leaves viewport through the top edge
+    document.addEventListener('mouseout', function (e) {
+      if (shown) return;
+      if (!e.relatedTarget && e.clientY <= 0) open();
+    });
+
+    closeBtn?.addEventListener('click', close);
+    popup.addEventListener('click', function (e) {
+      if (e.target === popup) close();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') close();
+    });
+  })();
+</script>

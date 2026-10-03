@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { SITE, OG_IMAGE, ACQUISITION_MAILTO } from '../config/site';
+import { SITE, OG_IMAGE, ACQUISITION_MAILTO, DOMAIN_OFFER } from '../config/site';
 
 interface Props {
   title?: string;
@@ -18,6 +18,45 @@ const {
 
 const canonicalURL = SITE.url;
 const publishedDate = '2026-07-07';
+
+const faqData = {
+  '@type': 'FAQPage',
+  '@id': `${SITE.url}#faq`,
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How much does sdl.space cost?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: `sdl.space is listed at ${DOMAIN_OFFER.priceDisplay} USD. Serious buyers can inquire via ${SITE.email} for confidential pricing, escrow, and transfer logistics.`,
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How does the domain transfer work?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Transfer is completed via a licensed escrow service (e.g. Escrow.com). Funds are held securely until the domain is transferred to your registrar account, typically within 1–3 business days.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What can I use sdl.space for?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'sdl.space is ideal for Scottsdale storage facilities, event venues, land acquisition firms, flexible commercial space operators, or a marketplace/directory for available space.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is sdl.space a premium investment domain?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Short, exact-match .space domains tied to a high-demand market like Scottsdale are rare 1-of-1 digital assets with strong brandability and resale potential.',
+      },
+    },
+  ],
+};
 
 const structuredData = {
   '@context': 'https://schema.org',
@@ -80,8 +119,8 @@ const structuredData = {
       offers: {
         '@type': 'Offer',
         '@id': `${SITE.url}#offer`,
-        price: '4995',
-        priceCurrency: 'USD',
+        price: DOMAIN_OFFER.price,
+        priceCurrency: DOMAIN_OFFER.currency,
         priceValidUntil: '2027-12-31',
         availability: 'https://schema.org/InStock',
         url: `${SITE.url}#offer`,
@@ -116,6 +155,7 @@ const structuredData = {
         },
       },
     },
+    faqData,
   ],
 };
 ---
@@ -126,12 +166,36 @@ const structuredData = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#0f172a" />
+
+    <!-- Performance: preconnect to third-party origins, preload hero image -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://imagedelivery.net" crossorigin />
+    <link rel="preload" as="image" href={ogImage} fetchpriority="high" />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+      />
+    </noscript>
 
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta
       name="keywords"
-      content="SDL.Space, Scottsdale storage domain for sale, event space domain Scottsdale, land acquisition domain Arizona, premium .space domain"
+      content="buy .space domains, sdl.space for sale, premium domain names, Scottsdale storage domain for sale, event space domain Scottsdale, investment domains, land acquisition domain Arizona"
     />
     <meta name="author" content="SDL Domains" />
     <meta name="robots" content={noindex ? 'noindex' : 'index, follow, max-image-preview:large'} />
@@ -168,6 +232,29 @@ const structuredData = {
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   </head>
   <body>
+    <a href="#main" class="skip-link">Skip to main content</a>
     <slot />
+    <script>
+      // Scroll-triggered fade-ins: progressively enhanced, respects reduced motion.
+      (function () {
+        var els = document.querySelectorAll('.reveal');
+        if (!('IntersectionObserver' in window)) {
+          els.forEach(function (el) { el.classList.add('is-visible'); });
+          return;
+        }
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                io.unobserve(entry.target);
+              }
+            });
+          },
+          { rootMargin: '0px 0px -8% 0px', threshold: 0.08 }
+        );
+        els.forEach(function (el) { io.observe(el); });
+      })();
+    </script>
   </body>
 </html>

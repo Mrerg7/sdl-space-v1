@@ -23,7 +23,7 @@ const { marketStats } = Astro.props;
   <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
     {
       marketStats.map((stat) => (
-        <div class="bg-white border border-slate-200 rounded-3xl p-7">
+          <div class="reveal bg-white border border-slate-200 rounded-3xl p-7">
           <div class="text-amber-700 text-xs tracking-widest font-semibold mb-2">{stat.data.label}</div>
           <div class="font-semibold text-lg">{stat.data.title}</div>
           <p class="mt-3 text-sm text-slate-600">{stat.data.description}</p>

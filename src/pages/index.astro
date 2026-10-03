@@ -7,7 +7,10 @@ import UseCasesSection from '../components/UseCasesSection.astro';
 import MarketSection from '../components/MarketSection.astro';
 import AcquisitionCTA from '../components/AcquisitionCTA.astro';
 import CrossPromo from '../components/CrossPromo.astro';
+import ExitIntent from '../components/ExitIntent.astro';
+import FaqSection from '../components/FaqSection.astro';
 import Footer from '../components/Footer.astro';
+import TrustBar from '../components/TrustBar.astro';
 import { getCollection } from 'astro:content';
 
 const sortByOrder = <T extends { data: { order: number } }>(items: T[]) =>
@@ -20,11 +23,16 @@ const marketStats = sortByOrder(await getCollection('marketStats'));
 
 <BaseLayout>
   <Nav />
-  <Hero />
-  <WhySection pillars={pillars} />
-  <UseCasesSection useCases={useCases} />
-  <MarketSection marketStats={marketStats} />
-  <AcquisitionCTA />
-  <CrossPromo />
+  <main id="main">
+    <Hero />
+    <TrustBar />
+    <WhySection pillars={pillars} />
+    <UseCasesSection useCases={useCases} />
+    <MarketSection marketStats={marketStats} />
+    <FaqSection />
+    <AcquisitionCTA />
+    <CrossPromo />
+  </main>
   <Footer />
+  <ExitIntent />
 </BaseLayout>

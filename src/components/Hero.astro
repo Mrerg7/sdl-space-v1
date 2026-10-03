@@ -1,8 +1,12 @@
 ---
-import { ACQUISITION_MAILTO, OG_IMAGE } from '../config/site';
+import { ACQUISITION_MAILTO, OG_IMAGE, DOMAIN_OFFER } from '../config/site';
+
+const buyNowMailto =
+  `mailto:sales@desertrich.com?subject=${encodeURIComponent('sdl.space — Buy Now at $4,995')}` +
+  `&body=${encodeURIComponent('Hello,\n\nI would like to purchase sdl.space at the listed price of $4,995 via escrow.\n\nName:\nRegistrar account (for transfer):\n\nThank you.')}`;
 ---
 
-<header class="relative min-h-[min(100svh,720px)] md:min-h-[680px] flex items-center overflow-hidden bg-slate-900">
+<header id="top" class="relative min-h-[min(100svh,720px)] md:min-h-[680px] flex items-center overflow-hidden bg-slate-900">
   <div class="absolute inset-0">
     <img
       src={OG_IMAGE}
@@ -26,7 +30,7 @@ import { ACQUISITION_MAILTO, OG_IMAGE } from '../config/site';
       >
         <div class="w-1.5 h-1.5 shrink-0 bg-emerald-400 rounded-full animate-pulse"></div>
         <span class="text-[10px] sm:text-xs font-semibold tracking-[1px] sm:tracking-[1.5px] text-white/90"
-          >PREMIUM .SPACE DOMAIN • SCOTTSDALE, AZ</span
+          >PREMIUM .SPACE DOMAIN • SCOTTSDALE, AZ • 1-OF-1 ASSET</span
         >
       </div>
 
@@ -38,21 +42,47 @@ import { ACQUISITION_MAILTO, OG_IMAGE } from '../config/site';
         The premier domain for storage, event spaces, and open land acquisition in Scottsdale, Arizona.
       </p>
 
+      {/* Above-the-fold price + urgency (CRO): no scrolling needed to see the offer */}
+      <div class="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2">
+        <p class="text-white text-3xl sm:text-4xl font-bold tracking-tight" aria-label={`Listed price ${DOMAIN_OFFER.priceDisplay} US dollars`}>
+          {DOMAIN_OFFER.priceDisplay}
+          <span class="ml-2 align-middle text-xs font-semibold tracking-widest text-emerald-300 bg-emerald-400/10 border border-emerald-300/30 rounded-full px-3 py-1">AVAILABLE NOW</span>
+        </p>
+        <p class="text-white/60 text-xs sm:text-sm">Secure escrow transfer • Typically 1–3 days</p>
+      </div>
+
       <div class="mt-8 sm:mt-9 flex flex-col sm:flex-row gap-3 sm:gap-4">
         <a
-          href={ACQUISITION_MAILTO}
+          href={buyNowMailto}
+          data-cta="hero-buy-now"
           class="w-full sm:w-auto text-center px-8 sm:px-10 py-3.5 sm:py-4 bg-white text-slate-900 hover:bg-amber-50 font-semibold rounded-3xl text-base transition-all active:scale-[0.985] shadow-xl"
         >
-          Inquire to Purchase
+          Buy Now — {DOMAIN_OFFER.priceDisplay}
         </a>
         <a
-          href="#market"
+          href={ACQUISITION_MAILTO}
+          data-cta="hero-make-offer"
           class="w-full sm:w-auto text-center px-6 sm:px-8 py-3.5 sm:py-4 border border-white/30 hover:bg-white/10 text-white font-semibold rounded-3xl text-base transition-all"
         >
-          <span class="sm:hidden">Explore Market</span>
-          <span class="hidden sm:inline">Explore the Scottsdale Space Market</span>
+          Make an Offer
         </a>
       </div>
+
+      {/* Trust signals above the fold */}
+      <ul class="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-white/70" aria-label="Purchase protections">
+        <li class="inline-flex items-center gap-1.5">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-emerald-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.6 2A9 9 0 1112 3a9 9 0 018.6 9z" /></svg>
+          Escrow-protected transaction
+        </li>
+        <li class="inline-flex items-center gap-1.5">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-emerald-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4" /></svg>
+          SSL-secure inquiry
+        </li>
+        <li class="inline-flex items-center gap-1.5">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-emerald-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+          Fast transfer, 24–48h response
+        </li>
+      </ul>
 
       <div class="mt-6 sm:mt-8 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-x-6 text-xs text-white/60">
         <div>Short • Versatile • Market-Owning</div>

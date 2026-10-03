@@ -1,13 +1,20 @@
 export const SITE = {
   name: 'sdl.space',
-  title: 'SDL.Space | Premium Domain for Scottsdale Storage, Event Spaces & Land Acquisition',
+  title: 'sdl.space | Premium Domain for Sale | SDL Domains',
   description:
-    'SDL.Space — The premier .space domain for storage facilities, event venues, and open land acquisition in Scottsdale, Arizona. Available for acquisition.',
+    'sdl.space for sale — $4,995 via secure escrow. Premium .space domain for Scottsdale storage, event venues & land acquisition. Inquire now for instant transfer.',
   url: 'https://sdl.space/',
   email: 'sales@desertrich.com',
   locale: 'en_US',
   location: 'Scottsdale, Arizona',
   googleSiteVerification: 'Xnr4yX9yQTyZ_fb5JK8bPdhJ0MbghtWAx28301tt3Zs',
+} as const;
+
+export const DOMAIN_OFFER = {
+  price: '4995',
+  priceDisplay: '$4,995',
+  currency: 'USD',
+  availability: 'Exclusive 1-of-1 asset — available now',
 } as const;
 
 export const CF_IMAGES = {

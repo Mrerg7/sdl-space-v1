@@ -1,0 +1,52 @@
+---
+import { SITE, DOMAIN_OFFER } from '../config/site';
+
+/* Long-tail SEO content: premium / investment / expired-domain adjacent queries + transfer objections. */
+const faqs = [
+  {
+    q: `How much does ${SITE.name} cost?`,
+    a: `${SITE.name} is listed at ${DOMAIN_OFFER.priceDisplay} USD. Serious buyers can inquire for confidential pricing, escrow, and transfer logistics — we typically respond within 24–48 hours.`,
+  },
+  {
+    q: 'How does the secure domain transfer work?',
+    a: 'We use a licensed escrow service. Your funds are held securely until the domain is pushed to your registrar account — typically within 1–3 business days. You never pay the seller directly.',
+  },
+  {
+    q: 'Is sdl.space a good investment domain?',
+    a: 'Short, exact-match .space domains tied to a high-demand market like Scottsdale are rare 1-of-1 assets. The name flexes across storage, event venues, land acquisition, and commercial space — four buyer pools instead of one.',
+  },
+  {
+    q: 'What can I build on sdl.space?',
+    a: 'A storage facility brand, premium event venue, land acquisition firm, flexible commercial space operator, or a marketplace/directory connecting users with storage units, venues, and land listings across Scottsdale.',
+  },
+  {
+    q: 'Can I make an offer below the list price?',
+    a: 'Yes. Use “Make an Offer” with your intended use and budget range. Cash offers with fast escrow close fastest.',
+  },
+];
+---
+
+<section class="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16" id="faq" aria-labelledby="faq-heading">
+  <div class="max-w-2xl mb-8">
+    <div class="uppercase tracking-[2px] text-xs font-semibold text-amber-700 mb-3">BUYER FAQ</div>
+    <h2 id="faq-heading" class="text-3xl sm:text-4xl tracking-tighter font-semibold font-display">
+      Premium domain questions, answered.
+    </h2>
+  </div>
+
+  <div class="grid gap-4">
+    {
+      faqs.map((f) => (
+        <details class="reveal group bg-white border border-slate-200 rounded-2xl px-5 sm:px-6 open:border-amber-200 open:shadow-sm transition-colors">
+          <summary class="py-4 sm:py-5 min-h-[48px] flex items-center justify-between gap-4 cursor-pointer font-semibold text-slate-900 list-none [&::-webkit-details-marker]:hidden">
+            <span>{f.q}</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 shrink-0 text-amber-700 transition-transform group-open:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+            </svg>
+          </summary>
+          <p class="pb-5 text-sm sm:text-base text-slate-600 leading-relaxed">{f.a}</p>
+        </details>
+      ))
+    }
+  </div>
+</section>
